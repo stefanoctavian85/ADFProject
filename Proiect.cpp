@@ -16,7 +16,7 @@ public:
 
 	MateriePrima(const char* denumire, int cantitateNecesara, int cantitateDisponibila) {
 		//cout << "\nConstructor cu toti parametrii.";
-		if (denumire!=nullptr) {
+		if (denumire != nullptr) {
 			this->denumire = new char[strlen(denumire) + 1];
 			strcpy_s(this->denumire, strlen(denumire) + 1, denumire);
 		}
@@ -61,7 +61,7 @@ public:
 		if (this != &m) {
 			delete[] this->denumire;
 			this->denumire = nullptr;
-			if (m.denumire!=nullptr) {
+			if (m.denumire != nullptr) {
 				this->denumire = new char[strlen(m.denumire) + 1];
 				strcpy_s(this->denumire, strlen(m.denumire) + 1, m.denumire);
 			}
@@ -76,13 +76,13 @@ public:
 	}
 
 	void setDenumire(char* denumireNou) {
-		if (denumireNou!=nullptr) {
+		if (denumireNou != nullptr) {
 			delete[] this->denumire;
 			this->denumire = new char[strlen(denumireNou) + 1];
 			strcpy_s(this->denumire, strlen(denumireNou) + 1, denumireNou);
 		}
 	}
-	
+
 	const char* getDenumire() const {
 		return this->denumire;
 	}
@@ -203,7 +203,7 @@ public:
 
 class Retete {
 private:
-	string numePizza="Anonim";
+	string numePizza = "Anonim";
 	int nrIngrediente = 0;
 	MateriePrima** ingrediente = nullptr;
 public:
@@ -216,7 +216,7 @@ public:
 		}
 		if (nrIngrediente > 0 && ingrediente != nullptr) {
 			this->nrIngrediente = nrIngrediente;
-			this->ingrediente = new MateriePrima*[this->nrIngrediente];
+			this->ingrediente = new MateriePrima * [this->nrIngrediente];
 			for (int i = 0; i < this->nrIngrediente; i++) {
 				this->ingrediente[i] = new MateriePrima(*ingrediente[i]);
 			}
@@ -250,7 +250,7 @@ public:
 	}
 
 	void setIngrediente(MateriePrima** ingredienteNou) {
-		if (ingredienteNou != nullptr && this->nrIngrediente>0) {
+		if (ingredienteNou != nullptr && this->nrIngrediente > 0) {
 			delete[] this->ingrediente;
 			this->ingrediente = new MateriePrima * [this->nrIngrediente];
 			for (int i = 0; i < this->nrIngrediente; i++) {
@@ -363,17 +363,17 @@ public:
 	Preparat(int index) : index(index++) {
 		//cout<<"\nConstructor fara parametru";
 	}
-	
+
 	Preparat(int index, Retete** reteta, int nrRetete, float pret) : index(index) {
 		//cout << "\nConstructor cu toti parametrii.";
-		if (reteta != nullptr && nrRetete>0) {
+		if (reteta != nullptr && nrRetete > 0) {
 			this->nrRetete = nrRetete;
 			this->reteta = new Retete * [this->nrRetete];
 			for (int i = 0; i < this->nrRetete; i++) {
 				this->reteta[i] = new Retete(*reteta[i]);
 			}
 		}
-		if (pret>0) {
+		if (pret > 0) {
 			this->pret = pret;
 		}
 	}
@@ -458,7 +458,7 @@ public:
 		}
 		return *this;
 	}
- 
+
 	friend istream& operator>>(istream& in, Preparat& p) {
 		cout << "\nIntroduceti preparatul: ";
 		cout << "\nIntroduceti nr. de retete: ";
@@ -614,9 +614,9 @@ public:
 	}
 
 	Comanda(Preparat** listaMeniu, int nrComanda) {
-		if (listaMeniu != nullptr && nrComanda>0) {
+		if (listaMeniu != nullptr && nrComanda > 0) {
 			this->nrComanda = nrComanda;
-			this->comanda = new Preparat*[this->nrComanda];
+			this->comanda = new Preparat * [this->nrComanda];
 			for (int i = 0; i < this->nrComanda; i++) {
 				this->comanda[i] = new Preparat(*listaMeniu[i]);
 				this->comanda[i] = listaMeniu[i];
@@ -649,7 +649,7 @@ public:
 
 	void setComanda(Preparat** comandaNoua) {
 		if (comandaNoua != nullptr && this->nrComanda > 0) {
-			this->comanda = new Preparat*[this->nrComanda];
+			this->comanda = new Preparat * [this->nrComanda];
 			for (int i = 0; i < this->nrComanda; i++) {
 				this->comanda[i] = new Preparat(*comandaNoua[i]);
 			}
@@ -740,8 +740,6 @@ public:
 
 	friend istream& operator>>(istream& in, Comanda& c) {
 		cout << "\nPlasati comanda pe care o doriti: ";
-		cout << "\nIntroduceti bugetul de care dispuneti: ";
-		in >> c.bugetClient;
 		cout << "\nIntroduceti nr. de produse pe care le doriti: ";
 		in >> c.nrComanda;
 		int nrIndex = 0;
@@ -749,7 +747,7 @@ public:
 			cout << "\nIntroduceti index-ul produsului pe care doriti sa il comandati(apasati 0 daca nu mai doriti niciun alt produs): ";
 			int index;
 			in >> index;
-			
+
 			while (index < 0) {
 				cout << "\nIndexul nu poate fi negativ. Reintroduceti index-ul: ";
 				in >> index;
@@ -839,11 +837,11 @@ int main() {
 
 	materie.setCantitateDisponibila(40);
 	cout << "\nCantitate disponibila(int): " << static_cast<int>(materie.getCantitateDisponibila());*/
-	
+
 	MateriePrima* listaIngrediente_p1[] = { &m1_p1, &m2_p1, &m3_p1 };
 	Retete r1("Pizza Specialitatea Noastra", 3, listaIngrediente_p1);
 	//cout << r1;
-	
+
 	MateriePrima m1_p2("Rosii", 10, 40);
 	MateriePrima m2_p2("Porumb", 20, 80);
 	MateriePrima m3_p2("Ciuperci", 15, 60);
@@ -856,7 +854,7 @@ int main() {
 	MateriePrima m1_p3("Salam", 15, 75);
 	MateriePrima m2_p3("Branza", 10, 50);
 
-	MateriePrima* listaIngrediente_p3[] = {&m1_p3, &m2_p3};
+	MateriePrima* listaIngrediente_p3[] = { &m1_p3, &m2_p3 };
 	Retete r3("Pizza Zilei", 2, listaIngrediente_p3);
 	//cout << r3;
 
@@ -881,13 +879,13 @@ int main() {
 	Preparat p4(4, listaReteta4, 1, 63);
 
 	//cout << p1 << p2 << p3 << p4;
-	
+
 	Preparat* listaMeniu[] = { &p1, &p2, &p3, &p4 };
 	Meniu m1(listaMeniu, 4);
 	//cout << m1;
 
 	Preparat* listaComanda[] = { &p1, &p3 };
-	int listaIndex[] = {1,3};
+	int listaIndex[] = { 1,3 };
 	//Comanda c1(listaComanda, 2, listaIndex, 2, 100);
 	Comanda c1(listaMeniu, 4);
 
@@ -901,7 +899,7 @@ int main() {
 		cout << "\nAlege o optiune: ";
 		cin >> optiune;
 		switch (optiune) {
-		case 1: 
+		case 1:
 			cout << m1;
 			break;
 		case 2:
