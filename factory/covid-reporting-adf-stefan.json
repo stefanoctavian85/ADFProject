@@ -1,0 +1,9 @@
+{
+	"name": "covid-reporting-adf-stefan",
+	"location": "northeurope",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "75c15f79-436e-422d-8042-8ea5b463323d",
+		"tenantId": "7e185ec6-ac86-4ef6-b3ab-f0e224a21cd6"
+	}
+}
